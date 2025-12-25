@@ -49,8 +49,9 @@ RUN echo '<Directory /var/www/html/>\n\
 RUN mkdir -p /etc/ssl/certs /etc/ssl/private
 
 # Copy SSL configuration (as additional site, not replacing default)
-COPY apache-ssl.conf /etc/apache2/sites-available/ssl.conf
-RUN a2ensite ssl
+# SSL site is disabled by default - enable it after creating SSL certificates
+# COPY apache-ssl.conf /etc/apache2/sites-available/ssl.conf
+# RUN a2ensite ssl
 
 # Expose both HTTP and HTTPS ports
 EXPOSE 80 443

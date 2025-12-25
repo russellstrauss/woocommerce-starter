@@ -5,7 +5,7 @@
 
 class ShoppingCart {
     constructor() {
-        this.storageKey = 'fjb_cart';
+        this.storageKey = 'woocommerce_starter_cart';
         this.cart = this.loadCart();
         this.init();
     }

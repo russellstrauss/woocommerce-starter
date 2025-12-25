@@ -24,7 +24,7 @@
 		</div>
 		
 		<?php wp_link_pages( array(
-			'before' => '<div class="page-links">' . __( 'Pages:', 'botanicals' ),
+			'before' => '<div class="page-links">' . __( 'Pages:', 'woocommerce-starter' ),
 			'after'  => '</div>',
 		) );
 		?>

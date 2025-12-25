@@ -29,7 +29,7 @@ get_header(); ?>
 						if ( '' != $jetpack_options['page-title'] )
 							echo esc_html( $jetpack_options['page-title'] );
 						else
-							_e( 'Testimonials', 'botanicals' );
+							_e( 'Testimonials', 'woocommerce-starter' );
 						?>
 				</h1>
 			<?php

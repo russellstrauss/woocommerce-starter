@@ -16,7 +16,7 @@ if ( have_posts() && is_post_type_archive( 'jetpack-portfolio' ) || is_tax( 'jet
 		<main id="main" class="site-main" role="main">
 		
 			<header class="page-header">
-				<h1 class="page-title"><?php _e('Portfolio','botanicals'); ?></h1>
+				<h1 class="page-title"><?php _e('Portfolio','woocommerce-starter'); ?></h1>
 			</header><!-- .page-header -->
 
 			<section class="featured-wrap">
@@ -29,7 +29,7 @@ if ( have_posts() && is_post_type_archive( 'jetpack-portfolio' ) || is_tax( 'jet
 
 							echo '<div class="featured-inner" style="background: url(' . $background[0] .');">';
 						}else{
-							echo '<div class="featured-inner" style="background: ' . esc_attr( get_theme_mod('botanicals_header_bgcolor', '#9cc9c7') ) . ';">';
+							echo '<div class="featured-inner" style="background: ' . esc_attr( get_theme_mod('woocommerce_starter_header_bgcolor', '#9cc9c7') ) . ';">';
 						}
 							
 							echo '<div class="post-header">';
@@ -38,7 +38,7 @@ if ( have_posts() && is_post_type_archive( 'jetpack-portfolio' ) || is_tax( 'jet
 
 								<span class="featured-text">';
 
-								echo the_terms($post->ID, 'jetpack-portfolio-type', '' . __('Project Type: ','botanicals') ,', ', '');
+								echo the_terms($post->ID, 'jetpack-portfolio-type', '' . __('Project Type: ','woocommerce-starter') ,', ', '');
 
 								echo '	<span class="tag-list">';
 

@@ -185,7 +185,7 @@ async function sendOrderConfirmationEmail(email, orderId, items, total, env) {
             const emailBody = generateOrderEmail(orderId, items, total);
             
             const formData = new FormData();
-            formData.append('from', `Farmer John's Botanicals <noreply@${mailgunDomain}>`);
+            formData.append('from', `WooCommerce Starter <noreply@${mailgunDomain}>`);
             formData.append('to', email);
             formData.append('subject', `Order Confirmation #${orderId}`);
             formData.append('html', emailBody);

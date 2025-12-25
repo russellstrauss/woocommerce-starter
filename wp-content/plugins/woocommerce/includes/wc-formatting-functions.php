@@ -620,6 +620,19 @@ if ( ! function_exists( 'wc_format_hex' ) ) {
 }
 
 /**
+ * Normalize postcode.
+ *
+ * Remove spaces and convert to uppercase.
+ *
+ * @since 2.6.0
+ * @param string $postcode Postcode to normalize.
+ * @return string
+ */
+function wc_normalize_postcode( $postcode ) {
+	return preg_replace( '/[\s\-]/', '', trim( strtoupper( $postcode ) ) );
+}
+
+/**
  * Format the postcode according to the country and length of the postcode.
  *
  * @param string postcode

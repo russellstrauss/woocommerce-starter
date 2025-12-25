@@ -2,7 +2,7 @@
 /**
  * Template Name: Shop Front
  *
- * @package botanicals
+ * @package woocommerce-starter
  */
 ?>
 

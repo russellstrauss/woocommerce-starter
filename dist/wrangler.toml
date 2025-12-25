@@ -1,4 +1,4 @@
-name = "farmer-johns-botanicals"
+name = "woocommerce-starter"
 compatibility_date = "2024-01-01"
 compatibility_flags = ["nodejs_compat"]
 
@@ -10,7 +10,7 @@ pages_build_output_dir = "."
 # D1 Database binding
 [[d1_databases]]
 binding = "DB"
-database_name = "fjb-orders"
+database_name = "woocommerce-starter-orders"
 database_id = "your-database-id-here"  # Replace with actual D1 database ID after creation
 
 # Environment variables (set via Cloudflare Dashboard or wrangler secret put)

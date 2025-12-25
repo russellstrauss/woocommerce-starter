@@ -1,15 +1,15 @@
 /* Imports */
 /*
-Theme Name: Botanicals
+Theme Name: WooCommerce Starter
 Theme URI: http://wptema.se/Botanicals
 Author: Carolina Nymark
 Author URI: http://wptema.se
-Description: Botanicals is a responsive, accessibility-ready multi-purpose theme. The theme has two optional menus (including a social menu) two different sidebars and a footer widget area that will hold any number of widgets. Features also include a Call To Action button and custom copyright text. We recommend that you install the Jetpack plugin to make full use of supported features like logos, featured content, contact forms, testimonials, social sharing and more.  To create a portfolio, install Jetpack and create your projects, all the templates are already shipped with the theme.
+Description: WooCommerce Starter is a responsive, accessibility-ready multi-purpose theme. The theme has two optional menus (including a social menu) two different sidebars and a footer widget area that will hold any number of widgets. Features also include a Call To Action button and custom copyright text. We recommend that you install the Jetpack plugin to make full use of supported features like logos, featured content, contact forms, testimonials, social sharing and more.  To create a portfolio, install Jetpack and create your projects, all the templates are already shipped with the theme.
 Version: 1.0.4
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Copyright: Carolina Nymark 2015-2016
-Text Domain: botanicals
+Text Domain: woocommerce-starter
 Tags: light, white, threaded-comments, custom-menu, sticky-post, editor-style, translation-ready, two-columns, featured-images, responsive-layout, accessibility-ready, custom-header
 
 Resetting and rebuilding styles have been helped along thanks to the fine work of
@@ -2039,28 +2039,28 @@ header .main-navigation {
   header .site-branding {
     margin-top: 60px; } }
 
-header .fjb-checkout {
+header .woocommerce-starter-checkout {
   text-align: center; }
   @media (min-width: 768px) {
-    header .fjb-checkout {
+    header .woocommerce-starter-checkout {
       position: absolute;
       right: 20px;
       top: 14px;
       width: 120px;
       z-index: 999; } }
   @media (min-width: 992px) {
-    header .fjb-checkout {
+    header .woocommerce-starter-checkout {
       width: 200px;
       top: 25px; } }
-  header .fjb-checkout:hover a .bling-shark-container .bling-shark {
+  header .woocommerce-starter-checkout:hover a .bling-shark-container .bling-shark {
     display: none; }
-  header .fjb-checkout:hover a .bling-shark-container .bling-shark-hover {
+  header .woocommerce-starter-checkout:hover a .bling-shark-container .bling-shark-hover {
     display: block; }
-  header .fjb-checkout a {
+  header .woocommerce-starter-checkout a {
     display: block;
     text-decoration: none; }
     @media (max-width: 767px) {
-      header .fjb-checkout a {
+      header .woocommerce-starter-checkout a {
         padding: 20px;
         border-radius: 6px;
         border-top-left-radius: 0;
@@ -2069,45 +2069,45 @@ header .fjb-checkout {
         border: 1px solid #ccc;
         background-color: #eee;
         box-shadow: 0 6px #aaa; }
-        header .fjb-checkout a:active {
+        header .woocommerce-starter-checkout a:active {
           position: relative;
           box-shadow: none;
           top: 6px; } }
-    header .fjb-checkout a .bling-shark-container {
+    header .woocommerce-starter-checkout a .bling-shark-container {
       height: 160px;
       position: relative; }
-      header .fjb-checkout a .bling-shark-container .bling-shark, header .fjb-checkout a .bling-shark-container .bling-shark-hover {
+      header .woocommerce-starter-checkout a .bling-shark-container .bling-shark, header .woocommerce-starter-checkout a .bling-shark-container .bling-shark-hover {
         margin: 0 auto;
         background-repeat: no-repeat;
         height: 100%; }
         @media (max-width: 767px) {
-          header .fjb-checkout a .bling-shark-container .bling-shark, header .fjb-checkout a .bling-shark-container .bling-shark-hover {
+          header .woocommerce-starter-checkout a .bling-shark-container .bling-shark, header .woocommerce-starter-checkout a .bling-shark-container .bling-shark-hover {
             width: 250px;
             display: block;
             margin: auto; } }
         @media (min-width: 768px) {
-          header .fjb-checkout a .bling-shark-container .bling-shark, header .fjb-checkout a .bling-shark-container .bling-shark-hover {
+          header .woocommerce-starter-checkout a .bling-shark-container .bling-shark, header .woocommerce-starter-checkout a .bling-shark-container .bling-shark-hover {
             position: absolute;
             left: 0;
             bottom: 0;
             width: 100%; } }
-      header .fjb-checkout a .bling-shark-container .bling-shark {
+      header .woocommerce-starter-checkout a .bling-shark-container .bling-shark {
         display: block;
         background-image: url(assets/img/bling-shark-color.svg); }
-      header .fjb-checkout a .bling-shark-container .bling-shark-hover {
+      header .woocommerce-starter-checkout a .bling-shark-container .bling-shark-hover {
         display: none;
         background-image: url(assets/img/bling-shark-color-hover.svg); }
-    header .fjb-checkout a span {
+    header .woocommerce-starter-checkout a span {
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;
       color: black;
       font-size: 22px;
       text-transform: uppercase; }
       @media (max-width: 767px) {
-        header .fjb-checkout a span {
+        header .woocommerce-starter-checkout a span {
           display: block; } }
       @media (min-width: 768px) and (max-width: 991px) {
-        header .fjb-checkout a span {
+        header .woocommerce-starter-checkout a span {
           font-size: 14px; } }
 
 .hamburger {

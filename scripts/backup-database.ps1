@@ -1,11 +1,11 @@
 # Database Backup Script
 # Backs up the WordPress database to db-backup folder with timestamp
+# This version runs mysqldump via Docker
 
-$dbName = "fjb_db"
-$dbUser = "russell_fjb_user"
-$dbPassword = "EZsDNwLGpIPKi4E"
-$dbHost = "localhost"
-$dbPort = "3306"
+$dbName = "woocommerce_starter_db"
+$dbUser = "woocommerce_starter_user"
+$dbPassword = "woocommerce_starter_pass"
+$dbContainer = "woocommerce-starter-db"
 $backupDir = "db-backup"
 
 # Create backup directory if it doesn't exist
@@ -20,7 +20,16 @@ $backupFile = "$backupDir\$dbName`_$timestamp.sql"
 
 Write-Host "Starting database backup..."
 Write-Host "Database: $dbName"
+Write-Host "Container: $dbContainer"
 Write-Host "Backup file: $backupFile"
+
+# Check if Docker container is running
+$containerRunning = docker ps --filter "name=$dbContainer" --format "{{.Names}}"
+if (-not $containerRunning) {
+    Write-Host "Error: Docker container '$dbContainer' is not running!" -ForegroundColor Red
+    Write-Host "Please start the container with: docker-compose up -d" -ForegroundColor Yellow
+    exit 1
+}
 
 # Function to sanitize secrets from backup file
 function Remove-SecretsFromBackup {
@@ -50,13 +59,12 @@ function Remove-SecretsFromBackup {
     Write-Host "Secrets sanitized successfully!" -ForegroundColor Green
 }
 
-# Run mysqldump (assuming MySQL client is installed on Windows)
-# If mysqldump is not in PATH, you may need to use the full path
+# Run mysqldump inside the Docker container
 try {
-    $env:MYSQL_PWD = $dbPassword
-    mysqldump -h $dbHost -P $dbPort -u $dbUser --single-transaction --quick --lock-tables=false $dbName > $backupFile
+    $mysqldumpCmd = "mysqldump -u$dbUser -p$dbPassword --single-transaction --quick --lock-tables=false --no-tablespaces $dbName"
+    docker exec $dbContainer bash -c $mysqldumpCmd | Out-File -FilePath $backupFile -Encoding utf8
     
-    if ($LASTEXITCODE -eq 0) {
+    if ($LASTEXITCODE -eq 0 -and (Test-Path $backupFile) -and (Get-Item $backupFile).Length -gt 0) {
         # Sanitize secrets from the backup file
         Remove-SecretsFromBackup -FilePath $backupFile
         
@@ -65,17 +73,17 @@ try {
         Write-Host "File size: $([math]::Round($fileSize, 2)) MB"
         Write-Host "Location: $backupFile"
     } else {
-        Write-Host "Backup failed with exit code: $LASTEXITCODE" -ForegroundColor Red
+        Write-Host "Backup failed!" -ForegroundColor Red
         if (Test-Path $backupFile) {
             Remove-Item $backupFile
         }
         exit 1
     }
 } catch {
-    Write-Host "Error running mysqldump: $_" -ForegroundColor Red
-    Write-Host "Make sure MySQL client tools are installed and mysqldump is in your PATH" -ForegroundColor Yellow
+    Write-Host "Error running backup: $_" -ForegroundColor Red
+    if (Test-Path $backupFile) {
+        Remove-Item $backupFile
+    }
     exit 1
-} finally {
-    $env:MYSQL_PWD = $null
 }
 

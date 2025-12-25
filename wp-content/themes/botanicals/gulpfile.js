@@ -24,7 +24,7 @@ gulp.task('sass', function () {
 gulp.task('sync', ['sass'], function() {
 	browserSync.init({
 		open: true,
-		proxy: "http://farmerjohnsbotanicals.local"
+		proxy: "http://local.woocommerce-starter.com:8080"
 	});
 });
 

@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features
  *
- * @package botanicals
+ * @package woocommerce-starter
  */
 
 /**
@@ -13,7 +13,7 @@
  * @param array $classes Classes for the body element.
  * @return array
  */
-function botanicals_body_classes( $classes ) {
+function woocommerce_starter_body_classes( $classes ) {
 	// Adds a class of group-blog to blogs with more than 1 published author.
 	if ( is_multi_author() ) {
 		$classes[] = 'group-blog';
@@ -21,7 +21,7 @@ function botanicals_body_classes( $classes ) {
 
 	return $classes;
 }
-add_filter( 'body_class', 'botanicals_body_classes' );
+add_filter( 'body_class', 'woocommerce_starter_body_classes' );
 
 if ( ! function_exists( '_wp_render_title_tag' ) ) :
 	/**
@@ -31,7 +31,7 @@ if ( ! function_exists( '_wp_render_title_tag' ) ) :
 	 * @param string $sep Optional separator.
 	 * @return string The filtered title.
 	 */
-	function botanicals_wp_title( $title, $sep ) {
+	function woocommerce_starter_wp_title( $title, $sep ) {
 		if ( is_feed() ) {
 			return $title;
 		}
@@ -49,12 +49,12 @@ if ( ! function_exists( '_wp_render_title_tag' ) ) :
 
 		// Add a page number if necessary:
 		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-			$title .= " $sep " . sprintf( __( 'Page %s', 'botanicals' ), max( $paged, $page ) );
+			$title .= " $sep " . sprintf( __( 'Page %s', 'woocommerce-starter' ), max( $paged, $page ) );
 		}
 
 		return $title;
 	}
-	add_filter( 'wp_title', 'botanicals_wp_title', 10, 2 );
+	add_filter( 'wp_title', 'woocommerce_starter_wp_title', 10, 2 );
 endif;
 
 /**
@@ -69,11 +69,11 @@ endif;
  * @global WP_Query $wp_query WordPress Query object.
  * @return void
  */
-function botanicals_setup_author() {
+function woocommerce_starter_setup_author() {
 	global $wp_query;
 
 	if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
 		$GLOBALS['authordata'] = get_userdata( $wp_query->post->post_author );
 	}
 }
-add_action( 'wp', 'botanicals_setup_author' );
+add_action( 'wp', 'woocommerce_starter_setup_author' );

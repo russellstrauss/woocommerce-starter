@@ -44,9 +44,9 @@ function custom_add_to_cart_message() {
 remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10 );
 
 /**
- * Botanicals functions and definitions ================================== All Botanicals theme related methods below, default with the theme.
+ * WooCommerce Starter functions and definitions ================================== All WooCommerce Starter theme related methods below, default with the theme.
  *
- * @package botanicals
+ * @package woocommerce-starter
  */
 
 /**
@@ -56,7 +56,7 @@ if ( ! isset( $content_width )) {
 	$content_width = 640; /* pixels */
 }
 
-if ( ! function_exists( 'botanicals_setup' )) :
+if ( ! function_exists( 'woocommerce_starter_setup' )) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -64,14 +64,14 @@ if ( ! function_exists( 'botanicals_setup' )) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function botanicals_setup() {
+function woocommerce_starter_setup() {
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on Botanicals, use a find and replace
-	 * to change 'botanicals' to the name of your theme in all the template files
+	 * If you're building a theme based on WooCommerce Starter, use a find and replace
+	 * to change 'woocommerce-starter' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'botanicals', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'woocommerce-starter', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -107,11 +107,11 @@ function botanicals_setup() {
 	add_theme_support( 'html5', array(	'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'));
 
 }
-endif; // botanicals_setup
-add_action( 'after_setup_theme', 'botanicals_setup' );
+endif; // woocommerce_starter_setup
+add_action( 'after_setup_theme', 'woocommerce_starter_setup' );
 
 /**
-* botanicals_hide_title
+* woocommerce_starter_hide_title
 *
 * Site title removed from markup - no longer displayed in navigation menu or header.
 */
@@ -122,7 +122,7 @@ add_action( 'after_setup_theme', 'botanicals_setup' );
  *
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
-function botanicals_widgets_init() {
+function woocommerce_starter_widgets_init() {
 
 	register_sidebar( array(
 		'name'          => __( 'Footer widget area', 'botanicals' ),
@@ -155,11 +155,11 @@ function botanicals_widgets_init() {
 	));
 
 }
-add_action( 'widgets_init', 'botanicals_widgets_init' );
+add_action( 'widgets_init', 'woocommerce_starter_widgets_init' );
 
 
-if ( ! function_exists( 'botanicals_fonts_url' )) :
-	function botanicals_fonts_url() {
+if ( ! function_exists( 'woocommerce_starter_fonts_url' )) :
+	function woocommerce_starter_fonts_url() {
 		$fonts_url = '';
 		$fonts     = array();
 		$subsets   = 'latin,latin-ext';
@@ -196,9 +196,9 @@ endif;
 /**
  * Enqueue scripts and styles.
  */
-function botanicals_scripts() {
+function woocommerce_starter_scripts() {
 	wp_enqueue_style( 'botanicals-style', get_stylesheet_uri(), array('dashicons'));
-	wp_enqueue_style( 'botanicals-fonts', botanicals_fonts_url(), array(), null );
+	wp_enqueue_style( 'botanicals-fonts', woocommerce_starter_fonts_url(), array(), null );
 	wp_enqueue_style( 'open-sans');
 
 	wp_enqueue_script( 'botanicals-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
@@ -208,19 +208,19 @@ function botanicals_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'botanicals_scripts' );
+add_action( 'wp_enqueue_scripts', 'woocommerce_starter_scripts' );
 
 /*
  * Enqueue styles for the setup help page.
  */ 
 
-function botanicals_admin_scripts($hook) {
+function woocommerce_starter_admin_scripts($hook) {
 	if ( 'appearance_page_botanicals-theme' !== $hook ){
 		return;
 	}
 	wp_enqueue_style( 'botanicals-admin-style', get_template_directory_uri() .'/admin.css');
 }
-add_action( 'admin_enqueue_scripts', 'botanicals_admin_scripts' );
+add_action( 'admin_enqueue_scripts', 'woocommerce_starter_admin_scripts' );
 
 
 /**
@@ -255,8 +255,8 @@ require get_template_directory() . '/documentation.php';
 
 
 /* Add a title to posts that are missing titles */
-add_filter( 'the_title', 'botanicals_post_title' );
-function botanicals_post_title( $title ) {
+add_filter( 'the_title', 'woocommerce_starter_post_title' );
+function woocommerce_starter_post_title( $title ) {
 	if ( $title == '' ) {
 		return __( '(Untitled)', 'botanicals' );
 	}else{
@@ -264,7 +264,7 @@ function botanicals_post_title( $title ) {
 	}
 }
 
- function botanicals_no_sidebars($classes) {
+ function woocommerce_starter_no_sidebars($classes) {
 		 /* Are sidebars hidden on the frontpage?
 	 *		Is the sidebar activated?
 	 *		Add 'no-sidebar' to the $classes array
@@ -275,10 +275,10 @@ function botanicals_post_title( $title ) {
 
 	return $classes;
 }
-add_filter( 'body_class', 'botanicals_no_sidebars' );
+add_filter( 'body_class', 'woocommerce_starter_no_sidebars' );
 
 
-function botanicals_customize_css() {
+function woocommerce_starter_customize_css() {
 	echo '<style type="text/css" id="botanicals-custom-css">';
 	 if ( is_admin_bar_showing()) {
 	 	?>
@@ -301,26 +301,26 @@ function botanicals_customize_css() {
 	if ( ! empty( $header_image )) {
 	?>
 		.site-header {
-		background-size: <?php esc_attr_e( get_theme_mod('botanicals_header_bgsize', 'cover')); ?>;
+		background-size: <?php esc_attr_e( get_theme_mod('woocommerce_starter_header_bgsize', 'cover')); ?>;
 		}
 
 	<?php
 	/* No header image has been chosen, check for background color: */
 	}else{
-		if( get_theme_mod('botanicals_header_bgcolor')){
-			echo '.site-header { background:' . esc_attr( get_theme_mod('botanicals_header_bgcolor', '#9cc9c7')) . ';}';
+		if( get_theme_mod('woocommerce_starter_header_bgcolor')){
+			echo '.site-header { background:' . esc_attr( get_theme_mod('woocommerce_starter_header_bgcolor', '#9cc9c7')) . ';}';
 			echo '#action:hover, #action:focus{text-shadow:none;}';
 		}
 	}
 
 	//Call to Action text color
-	if( get_theme_mod( 'botanicals_action_color' ) <> ' ') {
-		echo '#action, #action a{ color:' . esc_attr( get_theme_mod('botanicals_action_color', '#000000')) . ';}';
+	if( get_theme_mod( 'woocommerce_starter_action_color' ) <> ' ') {
+		echo '#action, #action a{ color:' . esc_attr( get_theme_mod('woocommerce_starter_action_color', '#000000')) . ';}';
 	}
 
 	//Call to Action background color
-	if( get_theme_mod( 'botanicals_action_bgcolor' ) <> '') {
-		echo '#action, #action a{background:#' . esc_attr( get_theme_mod('botanicals_action_bgcolor', 'none')) . ';}';
+	if( get_theme_mod( 'woocommerce_starter_action_bgcolor' ) <> '') {
+		echo '#action, #action a{background:#' . esc_attr( get_theme_mod('woocommerce_starter_action_bgcolor', 'none')) . ';}';
 	}
 
 	// If avatars are enabled, alter the css:
@@ -509,13 +509,13 @@ function botanicals_customize_css() {
 
 	echo '</style>' . "\n";
 }
-add_action( 'wp_head', 'botanicals_customize_css', 999);
+add_action( 'wp_head', 'woocommerce_starter_customize_css', 999);
 
 /**
  * Disable srcset for missing thumbnails to prevent memory issues
  * Simply removes srcset attribute when thumbnails might be missing
  */
-function botanicals_disable_srcset_for_missing_thumbnails( $sources, $size_array, $image_src, $image_meta, $attachment_id ) {
+function woocommerce_starter_disable_srcset_for_missing_thumbnails( $sources, $size_array, $image_src, $image_meta, $attachment_id ) {
 	// Only disable srcset on shop pages to avoid memory issues
 	if ( ! function_exists( 'is_shop' ) || ! is_shop() ) {
 		return $sources;
@@ -524,7 +524,7 @@ function botanicals_disable_srcset_for_missing_thumbnails( $sources, $size_array
 	// Return empty array to disable srcset (WordPress will use the main image)
 	return array();
 }
-add_filter( 'wp_calculate_image_srcset', 'botanicals_disable_srcset_for_missing_thumbnails', 999, 5 );
+add_filter( 'wp_calculate_image_srcset', 'woocommerce_starter_disable_srcset_for_missing_thumbnails', 999, 5 );
 
 /**
  * Completely remove WooCommerce Legacy REST API and prevent auto-reinstallation

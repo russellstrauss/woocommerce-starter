@@ -8,13 +8,13 @@
  * E.g., it puts together the home page when no home.php file exists.
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @package botanicals
+ * @package woocommerce-starter
  */
 
 get_header(); 
-	if ( botanicals_has_featured_posts( 1 ) ) {
+	if ( woocommerce_starter_has_featured_posts( 1 ) ) {
 		echo '<section class="featured-wrap">';
-			$featured_posts = botanicals_get_featured_posts();
+			$featured_posts = woocommerce_starter_get_featured_posts();
 			foreach ( (array) $featured_posts as $order => $post ) :
 				setup_postdata( $post );
 				echo '<div class="featured-post">';
@@ -22,13 +22,13 @@ get_header();
 					$background = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'botanicals-featured-posts-thumb' );
 					echo '<div class="featured-inner" style="background: url(' . $background[0] .');">';
 				}else{
-					echo '<div class="featured-inner" style="background: ' . esc_attr( get_theme_mod('botanicals_header_bgcolor', '#9cc9c7') ) . ';">';
+					echo '<div class="featured-inner" style="background: ' . esc_attr( get_theme_mod('woocommerce_starter_header_bgcolor', '#9cc9c7') ) . ';">';
 				}
 				echo '<div class="post-header">';
 				the_title( sprintf( '<h2><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); 
 				echo '</div>
 					<span class="featured-text">';
-						echo get_theme_mod('botanicals_featured_headline', __('Featured','botanicals'));
+						echo get_theme_mod('woocommerce_starter_featured_headline', __('Featured','woocommerce-starter'));
 				echo '<span class="tag-list">';
 							$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 							$time_string = sprintf( $time_string,
@@ -51,8 +51,8 @@ get_header();
 		<?php
 		/*The front page sections should not display on the blog listing page*/
 		if ( is_front_page() && is_home() ) {
-			if( get_theme_mod('botanicals_top_section1') <>"" OR get_theme_mod('botanicals_top_section2') <>"" OR get_theme_mod('botanicals_top_section3') <>"" ) {
-					$args = array('post_type' => 'page', 'orderby' => 'post__in', 'post__in' => array(get_theme_mod('botanicals_top_section1'), get_theme_mod('botanicals_top_section2'), get_theme_mod('botanicals_top_section3')));
+			if( get_theme_mod('woocommerce_starter_top_section1') <>"" OR get_theme_mod('woocommerce_starter_top_section2') <>"" OR get_theme_mod('woocommerce_starter_top_section3') <>"" ) {
+					$args = array('post_type' => 'page', 'orderby' => 'post__in', 'post__in' => array(get_theme_mod('woocommerce_starter_top_section1'), get_theme_mod('woocommerce_starter_top_section2'), get_theme_mod('woocommerce_starter_top_section3')));
 	     		    query_posts($args);
 					  while ( have_posts() ) : the_post();
 						get_template_part( 'content', 'page' );
@@ -78,8 +78,8 @@ get_header();
 
 		/*The front page sections should not display on the blog listing page*/
 		if ( is_front_page() && is_home() ) {
-			if( get_theme_mod('botanicals_bottom_section1') <>"" OR get_theme_mod('botanicals_bottom_section2') <>"" OR get_theme_mod('botanicals_bottom_section3') <>"") {
-					$args = array('post_type' => 'page', 'orderby' => 'post__in', 'post__in' => array(get_theme_mod('botanicals_bottom_section1'), get_theme_mod('botanicals_bottom_section2'), get_theme_mod('botanicals_bottom_section3')));
+			if( get_theme_mod('woocommerce_starter_bottom_section1') <>"" OR get_theme_mod('woocommerce_starter_bottom_section2') <>"" OR get_theme_mod('woocommerce_starter_bottom_section3') <>"") {
+					$args = array('post_type' => 'page', 'orderby' => 'post__in', 'post__in' => array(get_theme_mod('woocommerce_starter_bottom_section1'), get_theme_mod('woocommerce_starter_bottom_section2'), get_theme_mod('woocommerce_starter_bottom_section3')));
 	     		    query_posts($args);
 					  while ( have_posts() ) : the_post();
 						get_template_part( 'content', 'page' );

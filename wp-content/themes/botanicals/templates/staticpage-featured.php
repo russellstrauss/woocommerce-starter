@@ -7,11 +7,11 @@
  */
 
 get_header(); 
-	if ( botanicals_has_featured_posts( 1 ) ) {
+	if ( woocommerce_starter_has_featured_posts( 1 ) ) {
 
 		echo '<section class="featured-wrap">';
 		
-			$featured_posts = botanicals_get_featured_posts();
+			$featured_posts = woocommerce_starter_get_featured_posts();
 			foreach ( (array) $featured_posts as $order => $post ) :
 				setup_postdata( $post );
 
@@ -22,7 +22,7 @@ get_header();
 
 				echo '<div class="featured-inner" style="background: url(' . $background[0] .');">';
 			}else{
-				echo '<div class="featured-inner" style="background: ' . esc_attr( get_theme_mod('botanicals_header_bgcolor', '#9cc9c7') ) . ';">';
+				echo '<div class="featured-inner" style="background: ' . esc_attr( get_theme_mod('woocommerce_starter_header_bgcolor', '#9cc9c7') ) . ';">';
 			}
 				
 				echo '<div class="post-header">';
@@ -30,7 +30,7 @@ get_header();
 				echo '</div>
 					<span class="featured-text">';
 
-						echo get_theme_mod('botanicals_featured_headline', __('Featured','botanicals'));
+						echo get_theme_mod('woocommerce_starter_featured_headline', __('Featured','woocommerce-starter'));
 
 				echo '<span class="tag-list">';
 

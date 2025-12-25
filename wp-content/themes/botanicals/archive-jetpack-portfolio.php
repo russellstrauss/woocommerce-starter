@@ -14,7 +14,7 @@ get_header();
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
-				<h1 class="page-title"><?php _e('Portfolio','botanicals'); ?></h1>
+				<h1 class="page-title"><?php _e('Portfolio','woocommerce-starter'); ?></h1>
 			</header><!-- .page-header -->
 
 			<section class="featured-wrap">
@@ -28,7 +28,7 @@ get_header();
 
 						echo '<div class="featured-inner" style="background: url(' . $background[0] .');">';
 					}else{
-						echo '<div class="featured-inner" style="background: ' . esc_attr( get_theme_mod('botanicals_header_bgcolor', '#9cc9c7') ) . ';">';
+						echo '<div class="featured-inner" style="background: ' . esc_attr( get_theme_mod('woocommerce_starter_header_bgcolor', '#9cc9c7') ) . ';">';
 					}
 						
 						echo '<div class="post-header">';
@@ -37,7 +37,7 @@ get_header();
 
 							<span class="featured-text">';
 
-							echo the_terms($post->ID, 'jetpack-portfolio-type', '' . __('Project Type: ','botanicals') ,', ', '');
+							echo the_terms($post->ID, 'jetpack-portfolio-type', '' . __('Project Type: ','woocommerce-starter') ,', ', '');
 
 							echo '	<span class="tag-list">';
 

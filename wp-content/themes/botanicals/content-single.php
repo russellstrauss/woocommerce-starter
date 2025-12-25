@@ -9,7 +9,7 @@
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 
 		<div class="entry-meta">
-			<?php botanicals_posted_on(); ?>
+			<?php woocommerce_starter_posted_on(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 
@@ -22,11 +22,11 @@
 		the_content(); 
 
 		wp_link_pages( array(
-			'before' => '<div class="page-links">' . __( 'Pages:', 'botanicals' ),
+			'before' => '<div class="page-links">' . __( 'Pages:', 'woocommerce-starter' ),
 			'after'  => '</div>',
 		) );
 		?>
 		
 	</div><!-- .entry-content -->
-	<?php botanicals_entry_footer(); ?>
+	<?php woocommerce_starter_entry_footer(); ?>
 </article><!-- #post-## -->

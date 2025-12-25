@@ -17,12 +17,12 @@
 		the_content(); 
 
 		wp_link_pages( array(
-			'before' => '<div class="page-links">' . __( 'Pages:', 'botanicals' ),
+			'before' => '<div class="page-links">' . __( 'Pages:', 'woocommerce-starter' ),
 			'after'  => '</div>',
 		) );
 		?>
 
 	</div><!-- .entry-content -->
-	<?php botanicals_portfolio_footer(); ?>
+	<?php woocommerce_starter_portfolio_footer(); ?>
 </article><!-- #post-## -->
 

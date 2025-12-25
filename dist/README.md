@@ -1,4 +1,4 @@
-# Farmer John's Botanicals - Static E-commerce Site
+# WooCommerce Starter - Static E-commerce Site
 
 This is a fully static e-commerce site hosted on Cloudflare Pages with Stripe Checkout integration.
 
@@ -46,14 +46,14 @@ This creates individual product pages in `dist/product/` directory.
 
 3. Create D1 database:
    ```bash
-   wrangler d1 create fjb-orders
+   wrangler d1 create woocommerce-starter-orders
    ```
 
 4. Note the database ID from the output and update `wrangler.toml` with the database ID.
 
 5. Create database tables:
    ```bash
-   wrangler d1 execute fjb-orders --file=./database-schema.sql
+   wrangler d1 execute woocommerce-starter-orders --file=./database-schema.sql
    ```
 
 ### 4. Set Up Stripe

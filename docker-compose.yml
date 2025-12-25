@@ -1,13 +1,13 @@
 services:
   db:
     image: mysql:5.7
-    container_name: farmer-johns-botanicals-db
+    container_name: woocommerce-starter-db
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: fjb_db
-      MYSQL_USER: russell_fjb_user
-      MYSQL_PASSWORD: EZsDNwLGpIPKi4E
+      MYSQL_DATABASE: woocommerce_starter_db
+      MYSQL_USER: woocommerce_starter_user
+      MYSQL_PASSWORD: woocommerce_starter_pass
     volumes:
       - db_data:/var/lib/mysql
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
@@ -24,7 +24,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: farmer-johns-botanicals-wp
+    container_name: woocommerce-starter-wp
     restart: unless-stopped
     depends_on:
       db:
@@ -35,13 +35,14 @@ services:
     volumes:
       - .:/var/www/html
       - ./wp-content/uploads:/var/www/html/wp-content/uploads
-      - ./ssl/local.farmerjohnsbotanicals.com.crt:/etc/ssl/certs/local.farmerjohnsbotanicals.com.crt:ro
-      - ./ssl/local.farmerjohnsbotanicals.com.key:/etc/ssl/private/local.farmerjohnsbotanicals.com.key:ro
+      # SSL certificates - uncomment after creating certificates in ssl/ directory
+      # - ./ssl/local.woocommerce-starter.com.crt:/etc/ssl/certs/local.woocommerce-starter.com.crt:ro
+      # - ./ssl/local.woocommerce-starter.com.key:/etc/ssl/private/local.woocommerce-starter.com.key:ro
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_NAME: fjb_db
-      WORDPRESS_DB_USER: russell_fjb_user
-      WORDPRESS_DB_PASSWORD: EZsDNwLGpIPKi4E
+      WORDPRESS_DB_NAME: woocommerce_starter_db
+      WORDPRESS_DB_USER: woocommerce_starter_user
+      WORDPRESS_DB_PASSWORD: woocommerce_starter_pass
     networks:
       - wordpress-network
 

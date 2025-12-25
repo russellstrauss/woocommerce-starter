@@ -10,7 +10,7 @@
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php botanicals_posted_on(); ?>
+			<?php woocommerce_starter_posted_on(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -22,15 +22,15 @@
 			}
 			
 			/* translators: %s: Name of current post */
-			the_content( sprintf( __( 'Continue reading %s', 'botanicals' ), get_the_title() ) );
+			the_content( sprintf( __( 'Continue reading %s', 'woocommerce-starter' ), get_the_title() ) );
 
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'botanicals' ),
+				'before' => '<div class="page-links">' . __( 'Pages:', 'woocommerce-starter' ),
 				'after'  => '</div>',
 			) );
 		?>
 	</div><!-- .entry-content -->
 
-	<?php botanicals_entry_footer(); ?>
+	<?php woocommerce_starter_entry_footer(); ?>
 
 </article><!-- #post-## -->

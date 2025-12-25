@@ -4,7 +4,7 @@
  *
  * Displays all of the <head> section and everything up till <div id="content">
  *
- * @package botanicals
+ * @package woocommerce-starter
  */
 ?>
 <!DOCTYPE html>
@@ -21,26 +21,35 @@
 <body <?php body_class(); ?>>
 
 <div id="page" class="hfeed site">
-	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'botanicals' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'woocommerce-starter' ); ?></a>
 	<header id="masthead" class="site-header" role="banner">
 
-	<?php if ( has_nav_menu( 'header' )  ) {
-	?>
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<!-- <button class="menu-toggle" aria-controls="menu" aria-expanded="false"><span class="screen-reader-text"><?php //_e( 'Main Menu', 'botanicals' ); ?></span></button> -->
-			<?php wp_nav_menu( array( 'theme_location' => 'header', 'fallback_cb' => false, 'depth'=>2 ) );  ?>
-		
-			<button class="menu-toggle hamburger hamburger--squeeze" type="button">
-				<span class="hamburger-box">
-					<span class="hamburger-inner"></span>
-				</span>
-			</button>
-		</nav>
-	<?php
-	}
-	?>
+	<nav id="site-navigation" class="main-navigation" role="navigation">
+		<?php 
+		if ( has_nav_menu( 'header' ) ) {
+			wp_nav_menu( array( 'theme_location' => 'header', 'fallback_cb' => false, 'depth'=>2 ) );
+		} else {
+			// Fallback menu if no menu is assigned
+			echo '<ul class="menu">';
+			echo '<li><a href="' . esc_url( home_url( '/' ) ) . '">Home</a></li>';
+			if ( class_exists( 'WooCommerce' ) ) {
+				$shop_page_id = wc_get_page_id( 'shop' );
+				if ( $shop_page_id ) {
+					echo '<li><a href="' . esc_url( get_permalink( $shop_page_id ) ) . '">Shop</a></li>';
+				}
+			}
+			echo '</ul>';
+		}
+		?>
+	
+		<button class="menu-toggle hamburger hamburger--squeeze" type="button">
+			<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+			</span>
+		</button>
+	</nav>
 	<div class="site-branding">	
-		<?php //botanicals_the_site_logo(); ?>
+		<?php //woocommerce_starter_the_site_logo(); ?>
 		
 		<a href="<?php echo get_site_url(); ?>">
 			<img id="site-logo" src="<?php header_image(); ?>" alt="logo" />
@@ -52,29 +61,24 @@
 			<?php }	?>
 		<?php } ?>
 
-		<?php if( !get_theme_mod( 'botanicals_hide_action' ) ) {
-					if( get_theme_mod( 'botanicals_action_text' ) ) {	
+		<?php if( !get_theme_mod( 'woocommerce_starter_hide_action' ) ) {
+					if( get_theme_mod( 'woocommerce_starter_action_text' ) ) {	
 						echo '<div id="action">';
-						if( get_theme_mod( 'botanicals_action_link' ) ) {
-							echo '<a href="' . esc_url( get_theme_mod( 'botanicals_action_link' ) ) .'">';
+						if( get_theme_mod( 'woocommerce_starter_action_link' ) ) {
+							echo '<a href="' . esc_url( get_theme_mod( 'woocommerce_starter_action_link' ) ) .'">';
 						}
-						echo esc_html( get_theme_mod( 'botanicals_action_text' ) );
-						if( get_theme_mod( 'botanicals_action_link' )) {
+						echo esc_html( get_theme_mod( 'woocommerce_starter_action_text' ) );
+						if( get_theme_mod( 'woocommerce_starter_action_link' )) {
 							echo '</a>';
 						}
 						echo '</div>';
-					}else{
-						if ( is_user_logged_in() ) {
-							echo '<div id="action">';
-							echo '<a href="' . esc_url( home_url( '/wp-admin/customize.php' ) ) . '">' . __("Click here to setup your Call to Action", 'botanicals') . '</a>';
-							echo '</div>';
-						}
 					}
+					// Removed placeholder text - Call to Action section is hidden if no text is configured
 					?>
 			<?php
 			}
 			// Search form hidden - removed per request
-			// if ( !get_theme_mod('botanicals_hide_search') ){
+			// if ( !get_theme_mod('woocommerce_starter_hide_search') ){
 			// 	get_search_form();
 			// }
 			?>
@@ -82,9 +86,9 @@
 		</div><!-- .site-branding -->
 			
 		<?php
-		if (WC()->cart->get_cart_contents_count() > 0 && !is_cart() && !is_checkout()) {
+		if ( class_exists( 'WooCommerce' ) && function_exists( 'WC' ) && WC()->cart->get_cart_contents_count() > 0 && !is_cart() && !is_checkout()) {
 			
-			echo '<div class="fjb-checkout">';
+			echo '<div class="woocommerce-starter-checkout">';
 				echo '<a href="' . get_permalink( wc_get_page_id( 'cart' ) ) . '">';
 					echo '<span>checkout ' . sprintf ( _n( '(%d)', '(%d)', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ) . '</span>';
 					echo '<div class="bling-shark-container">';
